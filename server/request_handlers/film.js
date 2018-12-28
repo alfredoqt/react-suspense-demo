@@ -1,5 +1,6 @@
 const FilmModel = require('../db_models/film');
 const CriticModel = require('../db_models/critic');
+const { delay } = require('../utils/async');
 
 const handlers = {};
 

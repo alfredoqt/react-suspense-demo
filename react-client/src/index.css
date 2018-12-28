@@ -140,4 +140,6 @@ html {
 
 body {
   box-sizing: border-box;
+  background-color: #11121c;
+  color: white;
 }

@@ -4,7 +4,9 @@ import { fetchFilmListJSON } from '../api';
 
 const FilmListResource = unstable_createResource(fetchFilmListJSON);
 
-function FilmListPage(props) {
+function FilmListItem() {}
+
+function FilmListPage() {
   return (
     <>
       <h1>Top Box</h1>
