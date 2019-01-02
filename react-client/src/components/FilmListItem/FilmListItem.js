@@ -6,8 +6,8 @@ import CertifiedFresh from '../icons/CertifiedFresh';
 import Fresh from '../icons/Fresh';
 import Rotten from '../icons/Rotten';
 import ChevronRight from '../icons/ChevronRight';
-import './FilmListItem.css';
 import Spinner from '../Spinner';
+import './FilmListItem.css';
 
 class FilmListItem extends React.PureComponent {
   render() {
@@ -52,7 +52,7 @@ class FilmListItem extends React.PureComponent {
             </p>
           </div>
           {isLoading ? (
-            <Spinner size="small" />
+            <Spinner size="small" fixed={false} />
           ) : (
             <Icon path={ChevronRight} className="FilmListItemGoToDetails" />
           )}

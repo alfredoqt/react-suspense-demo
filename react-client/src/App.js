@@ -12,15 +12,19 @@ class App extends React.Component {
 
   handleFilmClick = id => {
     this.setState({
-      currentId: id,
-      showDetail: true
+      currentId: id
+    });
+    scheduleCallback(() => {
+      this.setState({
+        showDetail: true
+      });
     });
   };
 
   renderFilmList(loadingId) {
     return (
       <>
-        <React.Suspense fallback={<Spinner size="large" />}>
+        <React.Suspense maxDuration={0} fallback={<Spinner size="large" />}>
           <FilmListPage
             onFilmClick={this.handleFilmClick}
             loadingId={loadingId}

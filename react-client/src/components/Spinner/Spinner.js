@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Spinner.css';
 import { capitalize } from '../../utils/string';
+import './Spinner.css';
 
 const SPINNER_SIZES = {
   small: 30,
@@ -16,14 +16,14 @@ const STROKE_WIDTHS = {
   large: 6
 };
 
-function Spinner({ size }) {
+function Spinner({ size, fixed }) {
   const baseSize = SPINNER_SIZES[size];
   const baseStrokeWidth = STROKE_WIDTHS[size];
   const basePathSize = baseSize / 2;
   const basePathRadius = `${baseSize / 2 - baseStrokeWidth}px`;
   const pathClass = `${capitalize(size)}SpinnerPath`;
   return (
-    <div className="SpinnerContainer">
+    <div className={fixed ? 'SpinnerContainer' : null}>
       <svg
         className="Spinner"
         width={baseSize}
@@ -46,11 +46,13 @@ function Spinner({ size }) {
 }
 
 Spinner.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fixed: PropTypes.bool
 };
 
 Spinner.defaultProps = {
-  size: 'small'
+  size: 'small',
+  fixed: true
 };
 
 export default Spinner;
