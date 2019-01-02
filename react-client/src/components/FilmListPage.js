@@ -1,14 +1,15 @@
 import React from 'react';
-import { unstable_createResource } from 'react-cache';
+import PropTypes from 'prop-types';
+import createResource from '../utils/createResource';
 
 import { fetchFilmListJSON } from '../api';
 import FilmListItem from './FilmListItem';
 import Icon from './Icon';
 import Upright from './icons/Upright';
 
-const FilmListResource = unstable_createResource(fetchFilmListJSON);
+const FilmListResource = createResource(fetchFilmListJSON);
 
-function FilmListPage() {
+function FilmListPage({ onFilmClick, loadingId }) {
   return (
     <>
       <h1
@@ -29,11 +30,22 @@ function FilmListPage() {
             name={film.name}
             tomatometer={film.tomatometer}
             grossing={film.grossing}
+            onClick={() => onFilmClick(film._id)}
+            isLoading={!!loadingId && loadingId === film._id}
           />
         ))}
       </ul>
     </>
   );
 }
+
+FilmListPage.propTypes = {
+  onFilmClick: PropTypes.func.isRequired,
+  loadingId: PropTypes.string
+};
+
+FilmListPage.defaultProps = {
+  loadingId: null
+};
 
 export default FilmListPage;
