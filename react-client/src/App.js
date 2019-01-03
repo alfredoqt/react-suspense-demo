@@ -1,8 +1,10 @@
 import React from 'react';
 import FilmListPage from './components/FilmListPage';
-import FilmPage from './components/FilmPage';
 import Spinner from './components/Spinner';
 import scheduleCallback from './utils/scheduleCallback';
+
+// Lazy load the Film Page
+const FilmPage = React.lazy(() => import('./components/FilmPage'));
 
 class App extends React.Component {
   state = {
@@ -18,6 +20,13 @@ class App extends React.Component {
       this.setState({
         showDetail: true
       });
+    });
+  };
+
+  handleBackClick = () => {
+    this.setState({
+      currentId: null,
+      showDetail: false
     });
   };
 
@@ -37,8 +46,8 @@ class App extends React.Component {
   renderFilm(id) {
     return (
       <>
-        <React.Suspense fallback={<Spinner size="large" />}>
-          <FilmPage id={id} />
+        <React.Suspense maxDuration={1500} fallback={<Spinner size="large" />}>
+          <FilmPage id={id} onBack={this.handleBackClick} />
         </React.Suspense>
       </>
     );

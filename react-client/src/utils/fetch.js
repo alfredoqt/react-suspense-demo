@@ -1,5 +1,3 @@
-import { delay } from './async';
-
 /**
  * Performs a GET request and returns JSON
  * @param {string} url - URL to GET
@@ -12,7 +10,6 @@ export async function getJSON(url, options = {}) {
     if (!response.ok) {
       throw await response.json();
     }
-    await delay(1000);
     return await response.json();
   } catch (e) {
     throw e;
