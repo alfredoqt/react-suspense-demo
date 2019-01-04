@@ -16,14 +16,14 @@ const STROKE_WIDTHS = {
   large: 6
 };
 
-function Spinner({ size, fixed }) {
+function Spinner({ size, variant }) {
   const baseSize = SPINNER_SIZES[size];
   const baseStrokeWidth = STROKE_WIDTHS[size];
   const basePathSize = baseSize / 2;
   const basePathRadius = `${baseSize / 2 - baseStrokeWidth}px`;
   const pathClass = `${capitalize(size)}SpinnerPath`;
   return (
-    <div className={fixed ? 'SpinnerContainer' : null}>
+    <div className={`SpinnerContainer${capitalize(variant)}`}>
       <svg
         className="Spinner"
         width={baseSize}
@@ -47,12 +47,12 @@ function Spinner({ size, fixed }) {
 
 Spinner.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  fixed: PropTypes.bool
+  variant: PropTypes.oneOf(['fixed', 'centered'])
 };
 
 Spinner.defaultProps = {
   size: 'small',
-  fixed: true
+  variant: 'fixed'
 };
 
 export default Spinner;

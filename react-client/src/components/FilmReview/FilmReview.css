@@ -1,0 +1,19 @@
+.FilmReviewContainer {
+  display: flex;
+  border-radius: 4px;
+  background-color: #191c25;
+  padding: 16px;
+}
+
+.FilmReviewRatingIcon {
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.FilmReviewDescription {
+  margin-bottom: 8px;
+}
+
+.FilmReviewAuthor {
+  color: #8c8f99;
+}

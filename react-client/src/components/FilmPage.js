@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import FilmDetails from './FilmDetails';
 import Icon from './Icon';
 import ChevronRight from './icons/ChevronRight';
+import FilmReviews from './FilmReviews';
+import Spinner from './Spinner';
 
 class FilmPage extends React.PureComponent {
   render() {
@@ -24,6 +26,12 @@ class FilmPage extends React.PureComponent {
           />
         </div>
         <FilmDetails id={id} />
+        <React.Suspense
+          maxDuration={500}
+          fallback={<Spinner size="medium" variant="centered" />}
+        >
+          <FilmReviews id={id} />
+        </React.Suspense>
       </>
     );
   }

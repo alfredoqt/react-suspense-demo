@@ -2,22 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
-import CertifiedFresh from '../icons/CertifiedFresh';
-import Fresh from '../icons/Fresh';
-import Rotten from '../icons/Rotten';
 import ChevronRight from '../icons/ChevronRight';
 import Spinner from '../Spinner';
 import './FilmListItem.css';
+import { getTomatometerIcon } from '../../utils/ratingIcon';
 
 class FilmListItem extends React.PureComponent {
   render() {
     const { name, grossing, tomatometer, isLoading, onClick } = this.props;
-    let CriticsIcon = Rotten;
-    if (tomatometer >= 0.75) {
-      CriticsIcon = CertifiedFresh;
-    } else if (tomatometer >= 0.6) {
-      CriticsIcon = Fresh;
-    }
+    let CriticsIcon = getTomatometerIcon(tomatometer);
     return (
       <li>
         <div
@@ -52,7 +45,7 @@ class FilmListItem extends React.PureComponent {
             </p>
           </div>
           {isLoading ? (
-            <Spinner size="small" fixed={false} />
+            <Spinner size="small" variant="centered" />
           ) : (
             <Icon path={ChevronRight} className="FilmListItemGoToDetails" />
           )}

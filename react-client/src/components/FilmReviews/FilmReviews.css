@@ -1,0 +1,8 @@
+.FilmReviewsContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.FilmReviewsContainer > li {
+  width: 50%;
+}

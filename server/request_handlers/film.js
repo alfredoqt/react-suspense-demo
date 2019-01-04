@@ -58,6 +58,8 @@ handlers.getReviews = async (req, res, next) => {
     const critics = await CriticModel.find({
       film: id
     });
+
+    await delay(2000); // Fake a delay
     return res.send(critics);
   } catch (e) {
     next(e);

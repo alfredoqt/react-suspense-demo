@@ -11,11 +11,17 @@
   animation: rotate 1.3s linear infinite;
 }
 
-.SpinnerContainer {
+.SpinnerContainerFixed {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.SpinnerContainerCentered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes colors {
