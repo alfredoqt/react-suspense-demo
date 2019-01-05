@@ -9,11 +9,13 @@ function configureWebSocketServer(server) {
   });
 
   function handleMessage(ws, message) {
-    if (messageHandlers[message.type] === undefined) {
+    const parsedMessage = JSON.parse(message);
+    if (messageHandlers[parsedMessage.type] === undefined) {
       // TODO: Maybe send back an error
     }
+    console.log(parsedMessage.type);
     // Much cleaner way
-    messageHandlers[message.type](ws, message);
+    messageHandlers[parsedMessage.type](ws, parsedMessage);
   }
 
   function handleConnection(ws) {

@@ -17,10 +17,10 @@ export function configureConnectionToWebSocketServer() {
 
   function handleMessage(message) {
     try {
-      const parsedMessage = JSON.parse(message);
+      const parsedMessage = JSON.parse(message.data);
       SocketEvent.emit(parsedMessage.type, parsedMessage.data);
     } catch (e) {
-      // Handle this somehow
+      // TODO: Handle this somehow
     }
   }
 

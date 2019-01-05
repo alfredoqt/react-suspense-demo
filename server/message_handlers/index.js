@@ -1,6 +1,9 @@
-function subscribeToNewFilms(ws, message) {}
+function subscribeToNewFilms(ws) {
+  const test = { type: 'newFilms', data: { message: 'Hey pretty' } };
+  ws.send(JSON.stringify(test));
+}
 
-function unsubscribeToNewFilms(ws, message) {}
+function unsubscribeToNewFilms(ws) {}
 
 module.exports = {
   subscribeToNewFilms,
