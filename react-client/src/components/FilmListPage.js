@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import createResource from '../utils/createResource';
 
@@ -11,9 +11,11 @@ import Upright from './icons/Upright';
 const FilmListResource = createResource(fetchFilmListJSON);
 
 function FilmListPage({ onFilmClick, loadingId }) {
-  const films = FilmListResource.read();
+  const [films, setFilms] = useState(FilmListResource.read());
 
-  function handleNewFilm() {}
+  function handleNewFilm(data) {
+    setFilms([...films, data]);
+  }
 
   useEffect(() => {
     // Now it is easier

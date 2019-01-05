@@ -7,16 +7,16 @@ function subscribeToNewFilms(wss, ws) {
     filmsWatchers.delete(ws.uniqueId);
   }
 
+  const changeStream = FilmModel.watch([
+    {
+      $match: { operationType: 'insert' } // Only watch insertions
+    }
+  ]);
+
   // Set the change stream
-  filmsWatchers.set(
-    ws.uniqueId,
-    FilmModel.watch([
-      {
-        $match: { operationType: 'insert' } // Only watch insertions
-      }
-    ])
-  );
-  filmsWatchers.get(ws.uniqueId).on('change', change => {
+  filmsWatchers.set(ws.uniqueId, changeStream);
+
+  changeStream.on('change', change => {
     console.log('only print if it is subscribed');
     const { _id, name, tomatometer, grossing } = change.fullDocument;
     ws.send(
@@ -28,17 +28,18 @@ function subscribeToNewFilms(wss, ws) {
   });
 }
 
-function unsubscribeToNewFilms(wss, ws) {
+async function unsubscribeToNewFilms(wss, ws) {
+  console.log('Unsubscribe?');
   const changeStream = filmsWatchers.get(ws.uniqueId);
   if (changeStream === undefined) {
     return;
   }
 
-  // Close the connection
-  changeStream.close();
-
   // Delete it
   filmsWatchers.delete(ws.uniqueId);
+
+  // Close the connection
+  await changeStream.close();
 }
 
 module.exports = {
