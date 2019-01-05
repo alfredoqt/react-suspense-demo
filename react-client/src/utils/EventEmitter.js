@@ -35,6 +35,7 @@ class EventEmitter {
     for (let i; i < listeners.length; ++i) {
       if (listeners[i] === fn) {
         indexFound = i;
+        break;
       }
     }
 
