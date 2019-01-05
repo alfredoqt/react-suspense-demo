@@ -1,6 +1,5 @@
 const FilmModel = require('../db_models/film');
 const CriticModel = require('../db_models/critic');
-const { delay } = require('../utils/async');
 
 const handlers = {};
 
@@ -58,8 +57,6 @@ handlers.getReviews = async (req, res, next) => {
     const critics = await CriticModel.find({
       film: id
     });
-
-    await delay(2000); // Fake a delay
     return res.send(critics);
   } catch (e) {
     next(e);
@@ -78,13 +75,6 @@ handlers.postReview = async (req, res, next) => {
       film: id,
       rating
     });
-
-    await FilmModel.updateOne(
-      {
-        _id: id
-      },
-      { $push: { critics: critic._id } }
-    );
 
     return res.send(critic);
   } catch (e) {

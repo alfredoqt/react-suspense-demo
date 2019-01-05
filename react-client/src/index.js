@@ -6,6 +6,8 @@ import App from './App';
 import './index.css';
 import DefaultErrorBoundary from './DefaultErrorBoundary';
 
+import { connectToWebSocketServer } from './api/sockets';
+
 if (process.env.NODE_ENV === 'development') {
   const axe = require('react-axe');
   axe(React, ReactDOM, 1000);
@@ -16,5 +18,8 @@ ReactDOM.createRoot(document.getElementById('app')).render(
     <DefaultErrorBoundary>
       <App />
     </DefaultErrorBoundary>
-  </React.StrictMode>
+  </React.StrictMode>,
+  () => {
+    connectToWebSocketServer();
+  }
 );
