@@ -1,7 +1,6 @@
 const WebSocket = require('ws');
 
 const messageHandlers = require('../message_handlers');
-const { parseJSONToObject } = require('../utils/shared');
 
 function configureWebSocketServer(server) {
   const wss = new WebSocket.Server({
@@ -10,7 +9,6 @@ function configureWebSocketServer(server) {
   });
 
   function handleMessage(ws, message) {
-    const parsedMessage = parseJSONToObject(message);
     if (messageHandlers[message.type] === undefined) {
       // TODO: Maybe send back an error
     }
