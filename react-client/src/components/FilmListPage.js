@@ -13,9 +13,7 @@ const FilmListResource = createResource(fetchFilmListJSON);
 function FilmListPage({ onFilmClick, loadingId }) {
   const films = FilmListResource.read();
 
-  function handleNewFilm() {
-    // console.log(data);
-  }
+  function handleNewFilm() {}
 
   useEffect(() => {
     // Now it is easier

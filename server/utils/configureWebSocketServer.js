@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const uuidv4 = require('uuid/v4');
 
 const messageHandlers = require('../message_handlers');
 
@@ -8,18 +9,19 @@ function configureWebSocketServer(server) {
     clientTracking: true
   });
 
-  function handleMessage(ws, message) {
+  function handleMessage(wss, ws, message) {
     const parsedMessage = JSON.parse(message);
     if (messageHandlers[parsedMessage.type] === undefined) {
       // TODO: Maybe send back an error
     }
-    console.log(parsedMessage.type);
     // Much cleaner way
-    messageHandlers[parsedMessage.type](ws, parsedMessage);
+    messageHandlers[parsedMessage.type](wss, ws, parsedMessage);
   }
 
   function handleConnection(ws) {
-    ws.on('message', message => handleMessage(ws, message));
+    // Assign an id to the ws client
+    ws.uniqueId = uuidv4();
+    ws.on('message', message => handleMessage(wss, ws, message));
   }
 
   wss.on('connection', handleConnection);
