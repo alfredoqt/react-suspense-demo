@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Alfredo Quintero Tlacuilo",
   "license": "ISC",
@@ -15,11 +17,13 @@
     "express": "^4.16.4",
     "mongoose": "^5.4.1",
     "uuid": "^3.3.2",
-    "ws": "^6.1.2"
+    "ws": "^6.1.2",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
     "pretty-quick": "^1.8.0"
-  }
+  },
+  "snyk": true
 }
