@@ -10,9 +10,9 @@
   "author": "Alfredo Quintero Tlacuilo",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
+    "express": "^4.21.0",
     "mongoose": "^5.4.1",
     "uuid": "^3.3.2",
     "ws": "^6.1.2"
